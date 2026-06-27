@@ -2,12 +2,34 @@ import java.util.Map;
 import java.time.LocalDate;
 import java.time.format.TextStyle;
 import java.util.Locale;
+import java.util.Scanner;
+import java.text.Normalizer;
 
 public class Main {
   public static void main(String[] args) {
     Catalogo catalogo = new Catalogo();
 
-    String dia = LocalDate.now().getDayOfWeek().getDisplayName(TextStyle.FULL, new Locale("pt", "BR")).toLowerCase();
+    Scanner sc = new Scanner(System.in);
+
+    System.out.println("1 - Usar data atual");
+    System.out.println("2 - Informar um dia");
+    System.out.print("Escolha: ");
+
+    int opcao = sc.nextInt();
+    sc.nextLine();
+
+    String dia;
+
+    if (opcao == 1) {
+      dia = LocalDate.now().getDayOfWeek().getDisplayName(TextStyle.FULL, new Locale("pt", "BR")).toLowerCase();
+    }
+    else {
+      System.out.print("Digite um dia da semana: ");
+      dia = sc.nextLine().toLowerCase();
+    }
+
+    dia = Normalizer.normalize(dia, Normalizer.Form.NFD).replaceAll("\\p{M}", "");
+
     StrategyDia estrategia = catalogo.getEstrategia(dia);
     String info = "Relatório final do projeto, limpar aquário e responder e-mails pendentes.";
 
