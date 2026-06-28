@@ -1,7 +1,7 @@
 public class TercaFeira implements StrategyDia {
   @Override
   public String executar(String info) {
-    return "Avance nas tarefas pendentes: " + info;
+    return "Avançe nas tarefas pendentes. " + info;
   }
 
   @Override

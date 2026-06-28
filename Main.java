@@ -30,8 +30,10 @@ public class Main {
     dia = Normalizer.normalize(dia, Normalizer.Form.NFD).replaceAll("\\p{M}", "");
 
     StrategyDia estrategia = catalogo.getEstrategia(dia);
-    String info = "Relatório final do projeto, limpar aquário e responder e-mails pendentes.";
-
+    
+    System.out.print("Informe uma informação adicional (nome, tarefa ou meta): ");
+    String info = sc.nextLine();
+    
     System.out.println("Dia consultado: " + dia);
     System.out.println("Prioridade: " + estrategia.prioridade());
     System.out.println("Mensagem: " + estrategia.executar(info));
